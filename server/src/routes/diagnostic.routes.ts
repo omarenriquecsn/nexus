@@ -7,7 +7,7 @@ import {
   confirmDiagnosticDelivery,
   getPublicDiagnostic,
   acceptDiagnosticReport,
-} from "../controllers/diagnostic.controller";
+} from "../controllers/diagnostic.controller.js";
 
 const diagnosticRoutes = Router();
 

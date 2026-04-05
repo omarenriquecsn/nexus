@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { DiagnosticService } from '../services/diagnostic.service';
+import { DiagnosticService } from '../services/diagnostic.service.js';
 
 export const createDiagnostic = async (req: Request, res: Response) => {
   try {

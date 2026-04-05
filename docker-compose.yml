@@ -40,7 +40,9 @@ services:
     ports:
       - "${PORT:-3001}:${PORT:-3001}"
     networks:
-      - nexus
+      default:
+        aliases:
+          - backend
 
   client:
     build:
