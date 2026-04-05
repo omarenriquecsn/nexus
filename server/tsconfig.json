@@ -49,8 +49,8 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "baseUrl": "./"
+    "baseUrl": "."
   },
-  "include": ["src/**/*", "prisma.config.ts"], // <--- Asegúrate de incluir ambos
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"], // <--- Asegúrate de incluir ambos
+  "exclude": ["node_modules", "dist", "prisma"]
 }

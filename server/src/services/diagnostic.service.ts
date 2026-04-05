@@ -1,5 +1,7 @@
-import { Prisma } from '@prisma/client';
-import { prisma } from "../config/db";
+
+import { prisma } from "../config/db.js";
+
+type DiagnosticWithVehicle = Awaited<ReturnType<typeof prisma.diagnostic.findMany>>[number];
 
 export const DiagnosticService = {
   async getAllDiagnostics() {
@@ -67,7 +69,7 @@ export const DiagnosticService = {
   },
 
   async getPriorityDiagnostics() {
-    const priorityDiagnostics = await prisma.diagnostic.findMany({
+    const priorityDiagnostics: DiagnosticWithVehicle[] = await prisma.diagnostic.findMany({
       where: {
         AND: [
           { faultCode: { not: null } },
@@ -89,7 +91,7 @@ export const DiagnosticService = {
 
   async getCriticalDiagnostics() {
     // Derivamos healthStatus RED a partir de condiciones críticas del diagnóstico.
-    const criticalDiagnostics = await prisma.diagnostic.findMany({
+    const criticalDiagnostics: DiagnosticWithVehicle[] = await prisma.diagnostic.findMany({
       where: {
         OR: [
           { faultCode: { not: null } },
@@ -110,17 +112,12 @@ export const DiagnosticService = {
   },
 
   async confirmDelivery(id: string, reportImageUrl?: string) {
-    const data: Prisma.DiagnosticUpdateInput = {
-      deliveredAt: new Date(),
-    };
-
-    if (reportImageUrl !== undefined) {
-      data.reportImageUrl = reportImageUrl;
-    }
-
     return await prisma.diagnostic.update({
       where: { id },
-      data,
+      data: {
+        deliveredAt: new Date(),
+        reportImageUrl,
+      },
       include: {
         vehicle: { include: { owner: true } },
       },

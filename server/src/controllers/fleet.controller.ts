@@ -40,7 +40,7 @@ export const getFleetSummary = async (req: Request, res: Response) => {
       },
     };
 
-    vehicles.forEach((vehicle) => {
+    vehicles.forEach((vehicle: { diagnostics: any[]; plate: any; }) => {
       const latest = vehicle.diagnostics[0];
       const isCritical = Boolean(latest?.faultCode);
       const hasDiagnosis = Boolean(latest);

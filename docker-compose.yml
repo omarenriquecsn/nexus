@@ -9,7 +9,11 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexus} -d ${POSTGRES_DB:-nexus_db}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-nexus} -d ${POSTGRES_DB:-nexus_db}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -17,6 +21,10 @@ services:
       - nexus
 
   api:
+    command: >
+      sh -c "npx prisma generate && 
+             DATABASE_URL=${DATABASE_URL} npx prisma migrate deploy && 
+             node dist/src/index.js"  # <--- Agregamos /src/ aquí
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -54,4 +62,3 @@ services:
 networks:
   nexus:
     driver: bridge
-
