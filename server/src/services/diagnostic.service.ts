@@ -116,7 +116,7 @@ export const DiagnosticService = {
       where: { id },
       data: {
         deliveredAt: new Date(),
-        reportImageUrl,
+        reportImageUrl: reportImageUrl ?? null
       },
       include: {
         vehicle: { include: { owner: true } },
