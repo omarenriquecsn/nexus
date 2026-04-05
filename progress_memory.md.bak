@@ -1,0 +1,128 @@
+# 🚀 Memoria de Progreso: Agencia de Consultoría Técnica
+
+## 📌 Estado Actual
+
+- **Fase:** Definición de Arquitectura.
+- **Último Hito:** Plan de negocio y stack tecnológico seleccionado.
+
+## 🛠️ Stack Tecnológico
+
+- **Frontend:** Vite + React + TypeScript.
+- **Backend:** Node.js + Express + TypeScript.
+- **DB:** PostgreSQL.
+- **Auth:** Supabase.
+
+## 📝 Bitácora de Avances
+
+### [2026-03-22] - Definición del Proyecto
+
+- [x] Definición del modelo de negocio (Consultoría 360°).
+- [x] Selección de módulos críticos para la aplicación "Nexus Core".
+- [x] Definición de roles (IA para análisis, Humano para ejecución).
+- [ ] Configuración del repositorio inicial (Frontend & Backend).
+
+## 🚀 Próximos Pasos (Inmediatos)
+
+1. Configurar el esquema de la base de datos en PostgreSQL.
+2. Crear el boilerplate de Express con TypeScript.
+3. Diseñar la interfaz de carga de diagnósticos técnicos en React.
+
+## 📈 Métricas de Éxito
+
+- Tiempo promedio de diagnóstico reducido en un 40%.
+- 100% de trazabilidad de los repuestos utilizados.
+- Satisfacción del cliente (NPS) por encima de 9/10.
+
+---
+
+_Nota: Este archivo debe actualizarse al finalizar cada jornada de desarrollo o consultoría._
+
+# 🛠️ Nexus Core - Memoria de Progreso
+
+## 🎯 Objetivo: Agencia de Consultoría Técnica de Alta Precisión
+
+**IA:** Arquitectura, Lógica de Diagnóstico y Finanzas.
+**Humano:** Ejecución técnica, Validación de UX y Relaciones.
+
+## 📊 Estado del Proyecto
+
+- **Fase Actual:** Sprint 1 - Cimientos y Diagnóstico Core.
+- **Última actualización:** 2026-03-22
+
+## ✅ Tareas Completadas
+
+- [x] Definición de Arquitectura (Node/Express + React + Postgres).
+- [x] Definición de Pilares de UX (Modo "Manos Sucias" + Semáforo de Salud).
+
+## ⏳ Tareas en Progreso (Misiones del Humano)
+
+- [ ] Inicializar proyecto Vite + Express (TypeScript).
+- [ ] Configurar Prisma ORM y migrar esquema inicial a PostgreSQL.
+- [ ] Implementar flujo de login con Supabase.
+
+## 📝 Notas de Diseño
+
+- Priorizar el uso de componentes `Headless UI` para que la app sea extremadamente ligera en móviles.
+- El módulo de diagnóstico debe permitir "Notas de Voz" en el futuro cercano.
+
+# 🛠️ Nexus Core - Memoria de Progreso
+
+## 📊 Estado del Proyecto
+
+- **Fase Actual:** Sprint 1 - Setup de Infraestructura.
+- **Última actualización:** 2026-03-22 16:45 (Hora Local)
+
+## ✅ Tareas Completadas
+
+- [x] Definición de Arquitectura (Node/Express + React + Postgres).
+- [x] Diseño de estructura de carpetas (Monorepo).
+- [x] Selección de librerías base (Vite, Prisma, Lucide).
+
+## ⏳ Tareas en Progreso (Misiones del Humano)
+
+- [ ] Inicialización de carpetas `client/` y `server/`.
+- [ ] Configuración inicial de TypeScript en ambos entornos.
+- [ ] Definición del esquema inicial de Prisma para la base de datos.
+
+## 📝 Notas Técnicas
+
+- Se utilizará `lucide-react` para la iconografía técnica (iconos de batería, herramientas, etc.).
+- La comunicación entre cliente y servidor será vía REST API.
+
+### [2026-03-22] - Ajuste de Compilación TS
+
+- [x] Resolución de Error: 'File is not under rootDir'.
+- [x] Reconfiguración de `rootDir` en `tsconfig.json` para incluir archivos de la raíz del servidor.
+- [x] Inclusión explícita de `prisma.config.ts` en el ciclo de compilación.
+
+**Nota Técnica:** Se ha centralizado la configuración en la raíz del servidor para permitir que Prisma 7 funcione correctamente con el resto del código en `src/`.
+
+### [2026-03-22] - Resolución de Autenticación Crítica
+
+- [x] Identificación de servidor PostgreSQL v18 activo.
+- [x] Aplicación de método `trust` en `pg_hba.conf` para omitir validación de contraseña en local.
+- [ ] Sincronización de tablas con `npx prisma migrate dev`.
+- [ ] Arranque del servidor Express con Prisma Client.
+
+**Nota de IA:** Una vez superado el P1000, el esquema de Prisma creará automáticamente las tablas `User`, `Client`, `Vehicle` y `Diagnostic`.
+### [2026-03-22] - Resolución de Conflictos de Configuración
+- [x] Identificado error de resolución de tipos en `@prisma/client/config`.
+- [x] Propuesta de simplificación mediante eliminación de redundancia de archivos.
+- [ ] Verificación de ejecución de seeding vía `package.json`.
+
+**Nota Técnica:** En Node v22, simplificar la jerarquía de configuración reduce los errores de carga de módulos ESM durante la fase de inicialización.
+
+### [2026-03-22] - Ajustes de Sintaxis Verbatim
+- [x] Implementación de `import type` para interfaces de Express.
+- [x] Cumplimiento de `verbatimModuleSyntax` para optimización de transpilación.
+- [x] Estructura de controladores blindada contra errores de tipos en ESM.
+
+**Estado:** El código es ahora 100% compatible con los estándares de TypeScript 5.x y Node v22.
+
+### [2026-03-22] - Cierre de Fase Backend Core
+- [x] API funcional con arquitectura de 4 capas.
+- [x] Validación de tipos estricta y manejo de errores de integridad (P2003).
+- [x] Base de Datos PostgreSQL operativa y vinculada.
+- [ ] INICIO PENDIENTE: Desarrollo de interfaz en Vite + React.
+
+**Nota:** El servidor está listo para recibir peticiones desde el cliente. Mañana iniciaremos con la pantalla de búsqueda y el formulario de recepción.

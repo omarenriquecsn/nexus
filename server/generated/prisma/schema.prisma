@@ -1,0 +1,56 @@
+// server/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("TECHNICIAN") // ADMIN o TECHNICIAN
+  createdAt DateTime @default(now())
+}
+
+model Client {
+  id        String    @id @default(uuid())
+  name      String
+  phone     String?
+  email     String?   @unique
+  vehicles  Vehicle[]
+  createdAt DateTime  @default(now())
+}
+
+model Vehicle {
+  id          String       @id @default(uuid())
+  plate       String       @unique // Placa/Matrícula
+  brand       String // Marca
+  model       String // Modelo
+  year        Int
+  ownerId     String
+  owner       Client       @relation(fields: [ownerId], references: [id])
+  diagnostics Diagnostic[]
+  createdAt   DateTime     @default(now())
+}
+
+model Diagnostic {
+  id             String   @id @default(uuid())
+  description    String
+  faultCode      String?
+  technicalNotes String?
+  voltageReading Float?
+  // --- CAMPOS NUEVOS PARA GNV ---
+  gnvPressure    Float? // Presión en PSI
+  gnvLeakTest    Boolean? @default(false) // Prueba de fugas
+  gnvSolenoid    String? // Estado de electroválvula (OK / Falla)
+  // ------------------------------
+
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+  createdAt DateTime @default(now())
+}
