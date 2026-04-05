@@ -12,10 +12,8 @@ RUN npm run build
 FROM node:22-alpine AS runtime
 WORKDIR /usr/src/app
 
-ARG DATABASE_URL=postgresql://nexus:nexus_password@db:5432/nexus_db
-ARG PORT=3001
-ENV DATABASE_URL=${DATABASE_URL}
-ENV PORT=${PORT}
+ENV DATABASE_URL=postgresql://nexus:nexus_password@db:5432/nexus_db
+ENV PORT=3001
 
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev
