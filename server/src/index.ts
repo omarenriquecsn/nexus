@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import { prisma } from './config/db.js'; // Importamos la instancia centralizada
-import diagnosticRoutes  from './routes/diagnostic.routes';
-import clientRoutes from './routes/client.routes';
-import fleetRoutes from './routes/fleet.routes';
-import vehicleRoutes from './routes/vehicle.routes';
-import toolRoutes from './routes/tool.routes';
+import diagnosticRoutes  from './routes/diagnostic.routes.js';
+import clientRoutes from './routes/client.routes.js';
+import fleetRoutes from './routes/fleet.routes.js';
+import vehicleRoutes from './routes/vehicle.routes.js';
+import toolRoutes from './routes/tool.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
