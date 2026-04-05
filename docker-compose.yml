@@ -40,7 +40,7 @@ services:
     ports:
       - "${PORT:-3001}:${PORT:-3001}"
     networks:
-      default:
+      nexus:
         aliases:
           - backend
 
@@ -64,3 +64,6 @@ services:
 networks:
   nexus:
     driver: bridge
+
+volumes:
+  postgres_data:
