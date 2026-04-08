@@ -1,4 +1,4 @@
-import { prisma } from "@/config/db.js";
+import { prisma } from "../config/db.js";
 
 export const fleetService = {
     async getFleetSummary(clientId: string) {

@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { fleetService } from "@/services/fleet.service.js";
+import { fleetService } from "../services/fleet.service.js";
 
 export const getFleetSummary = async (req: Request, res: Response) => {
   const { ownerId } = req.params;

@@ -1,6 +1,6 @@
 // server/src/controllers/toolController.ts
 import type { Request, Response } from "express";
-import { ToolService } from "@/services/tool.service.js";
+import { ToolService } from "../services/tool.service.js";
 
 export const createLoan = async (req: Request, res: Response) => {
   const { toolName, borrowerName, borrowerPhone } = req.body;

@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { StatsService } from "@/services/stats.service.js";
+import { StatsService } from "../services/stats.service.js";
 
 export const getDashboardStats = async (_req: Request, res: Response) => {
   try {
