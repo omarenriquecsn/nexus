@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import { ClientService } from "../services/client.service.js";
-import { prisma } from "../config/db.js";
 
 export const createClient = async (req: Request, res: Response) => {
   try {
@@ -62,41 +61,7 @@ export const getClientFleet = async (req: Request, res: Response) => {
     return res.status(400).json({ error: "ID de cliente requerido" });
   try {
     // Buscar cliente con vehículos y el último diagnóstico de cada uno
-    const client = await prisma.client.findUnique({
-      where: { id: clientId },
-      select: {
-        id: true,
-        name: true,
-        phone: true,
-        email: true,
-        vehicles: {
-          select: {
-            id: true,
-            plate: true,
-            brand: true,
-            model: true,
-            year: true,
-            diagnostics: {
-              orderBy: { createdAt: "desc" },
-              take: 1,
-              select: {
-                id: true,
-                description: true,
-                createdAt: true,
-                faultCode: true,
-                technicalNotes: true,
-                voltageReading: true,
-                deliveredAt: true,
-                isAccepted: true,
-                gnvPressure: true,
-                gnvLeakTest: true,
-                gnvSolenoid: true,
-              },
-            },
-          },
-        },
-      },
-    });
+    const client = await ClientService.getClientFleet(clientId as string);
     if (!client)
       return res.status(404).json({ error: "Cliente no encontrado" });
     res.json(client);

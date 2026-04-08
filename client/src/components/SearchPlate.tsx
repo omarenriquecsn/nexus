@@ -27,6 +27,7 @@ export const SearchPlate = ({ onShowFleet }: SearchPlateProps) => {
         `/vehicles/${plate.toUpperCase()}`,
       );
       setVehicle(response.data);
+  
     } catch {
       // Quitamos 'err' y el 'any' ya que no usábamos la variable del error
       setVehicle(null);
@@ -71,7 +72,7 @@ export const SearchPlate = ({ onShowFleet }: SearchPlateProps) => {
         </div>
       )}
 
-      {vehicle && (
+      {vehicle &&  (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="glass-card p-6 rounded-3xl border-l-4 border-nexus-accent">
             <div className="flex justify-between items-start mb-4">
@@ -104,7 +105,7 @@ export const SearchPlate = ({ onShowFleet }: SearchPlateProps) => {
                 <button
                   className="ml-2 flex items-center gap-1 px-2 py-1 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold shadow transition-all"
                   title="Ver Flota del Cliente"
-                  onClick={() => onShowFleet(vehicle.owner.id)}
+                  onClick={() => onShowFleet(vehicle.owner?.id)}
                 >
                   <Layers size={16} /> Flota
                 </button>
@@ -112,8 +113,8 @@ export const SearchPlate = ({ onShowFleet }: SearchPlateProps) => {
             </div>
             <div className="space-y-2">
               <p className="text-slate-400 text-xs uppercase font-bold">Propietario</p>
-              <p className="text-2xl font-black">{vehicle.owner.name}</p>
-              <p className="text-slate-400 font-medium italic">{vehicle.owner.phone || "Sin teléfono"}</p>
+              <p className="text-2xl font-black">{vehicle.owner?.name || "Sin Propietario"}</p>
+              <p className="text-slate-400 font-medium italic">{vehicle.owner?.phone || "Sin teléfono"}</p>
             </div>
           </div>
         </div>

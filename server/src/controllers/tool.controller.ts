@@ -1,13 +1,15 @@
 // server/src/controllers/toolController.ts
-import type { Request, Response } from 'express';
-import { prisma } from '../config/db.js';
+import type { Request, Response } from "express";
+import { ToolService } from "@/services/tool.service.js";
 
 export const createLoan = async (req: Request, res: Response) => {
   const { toolName, borrowerName, borrowerPhone } = req.body;
   try {
-    const loan = await prisma.toolLoan.create({
-      data: { toolName, borrowerName, borrowerPhone, status: 'BORROWED' }
-    });
+    const loan = await ToolService.cretaeLoan(
+      toolName as string,
+      borrowerName as string,
+      borrowerPhone as string,
+    );
     res.json(loan);
   } catch (error) {
     res.status(500).json({ error: "Error al registrar préstamo" });
@@ -26,15 +28,7 @@ export const returnTool = async (req: Request, res: Response) => {
   }
 
   try {
-    const updated = await prisma.toolLoan.update({
-      where: { 
-        id: idToUpdate as string // Aquí ya TS está tranquilo
-      },
-      data: { 
-        status: 'RETURNED',
-        returnDate: new Date() 
-      }
-    });
+    const updated = await ToolService.returnTool(idToUpdate as string);
     res.json(updated);
   } catch (error) {
     res.status(500).json({ error: "Error al devolver herramienta" });
@@ -42,9 +36,10 @@ export const returnTool = async (req: Request, res: Response) => {
 };
 
 export const getActiveLoans = async (_req: Request, res: Response) => {
-  const loans = await prisma.toolLoan.findMany({
-    where: { status: 'BORROWED' },
-    orderBy: { loanDate: 'desc' }
-  });
-  res.json(loans);
+  try {
+    const loans = await ToolService.getActiveLoans();
+    res.json(loans);
+  } catch (error) {
+    res.status(500).json({ error: "Error  al obtener préstamos activos" });
+  }
 };

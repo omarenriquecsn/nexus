@@ -49,7 +49,10 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "baseUrl": "."
+    // "baseUrl": "."
+    "paths": {
+    "@/*": ["./src/*"] 
+  }
   },
   "include": ["src/**/*"], // <--- Asegúrate de incluir ambos
   "exclude": ["node_modules", "dist", "prisma"]

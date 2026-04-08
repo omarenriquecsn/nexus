@@ -43,4 +43,42 @@ export const ClientService = {
       },
     });
   },
+
+  async getClientFleet(id: string) {
+    return await prisma.client.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        phone: true,
+        email: true,
+        vehicles: {
+          select: {
+            id: true,
+            plate: true,
+            brand: true,
+            model: true,
+            year: true,
+            diagnostics: {
+              orderBy: { createdAt: "desc" },
+              take: 1,
+              select: {
+                id: true,
+                description: true,
+                createdAt: true,
+                faultCode: true,
+                technicalNotes: true,
+                voltageReading: true,
+                deliveredAt: true,
+                isAccepted: true,
+                gnvPressure: true,
+                gnvLeakTest: true,
+                gnvSolenoid: true,
+              },
+            },
+          },
+        },
+      },
+    });
+  },
 };
