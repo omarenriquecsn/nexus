@@ -66,11 +66,16 @@ export const confirmDiagnosticDelivery = async (
         .json({ error: "ID de diagnóstico faltante o inválido." });
     }
 
-    const updatedDiagnostic = await DiagnosticService.confirmDelivery(
-      id,
-      reportImageUrl,
-    );
-    res.json(updatedDiagnostic);
+    if (!reportImageUrl) {
+      const updatedDiagnostic = await DiagnosticService.confirmDelivery(id);
+      res.json(updatedDiagnostic);
+    } else {
+      const updatedDiagnostic = await DiagnosticService.confirmDelivery(
+        id,
+        reportImageUrl,
+      );
+      res.json(updatedDiagnostic);
+    }
   } catch (error) {
     console.error(error);
     res
