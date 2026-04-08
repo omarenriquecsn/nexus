@@ -58,7 +58,10 @@ export const confirmDiagnosticDelivery = async (
 ) => {
   try {
     const { id } = req.params;
-    const { reportImageUrl } = req.body;
+
+    const body = req.body || {}
+
+    const { reportImageUrl } = body;
 
     if (!id || typeof id !== "string") {
       return res
@@ -66,16 +69,12 @@ export const confirmDiagnosticDelivery = async (
         .json({ error: "ID de diagnóstico faltante o inválido." });
     }
 
-    if (!reportImageUrl) {
-      const updatedDiagnostic = await DiagnosticService.confirmDelivery(id);
-      res.json(updatedDiagnostic);
-    } else {
       const updatedDiagnostic = await DiagnosticService.confirmDelivery(
         id,
         reportImageUrl,
       );
       res.json(updatedDiagnostic);
-    }
+    
   } catch (error) {
     console.error(error);
     res
